@@ -39,6 +39,7 @@ bowtie2-build PkV-RF01_genebank.fasta PkV-RF01_genebank
 Set the reference in the bowtie.slurm script and run it for each sample with a for-loop
 
 ### 2b Mapping to predicted genes with Kallisto
+https://pachterlab.github.io/kallisto/manual
 ```
 ml kallisto/0.46.1-foss-2020a
 kallisto index PkV-RF01_genebank.fasta -i PkV-RF01_genebank
