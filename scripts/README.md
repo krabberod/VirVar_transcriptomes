@@ -60,6 +60,6 @@ kallisto index PkV-RF01_final.fnn -i PkV-RF01_final_cds
 Set the reference in the kallisto.slurm script and run it for each sample
 
 
-### Step 3. Preparing data for R (DESeq)
-
 ### Step 4. R analysis
+See the script in the R_data folder. It's based on the DESeq2 package in R. 
+http://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html
