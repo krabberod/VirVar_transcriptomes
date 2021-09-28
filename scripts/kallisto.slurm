@@ -10,10 +10,10 @@
 module purge
 ml kallisto/0.46.1-foss-2020a
 
-REF=/cluster/work/users/anderkkr/57_Virvar/00_data/Fasta_genomes/kallisto/PkV-RF01_genebank_orf
+REF=/cluster/work/users/anderkkr/57_Virvar/00_data/Genome_annotated/PkV-RF01_final_cds
 OUT=kallisto_results
 R1=*R1_001_val_1*
 R2=*R2_001_val_2*
 
 
-kallisto quant --pseudobam -i $REF -t "$SLURM_CPUS_PER_TASK" -o $OUT $R1 $R2
+kallisto quant -i $REF -t "$SLURM_CPUS_PER_TASK" -o $OUT $R1 $R2

@@ -25,11 +25,11 @@ rsync -avR 00_data/Sample_*/*val* trimmed
 This loop creates new directories and softlinks to the trimmed reads:
 ```
 for f in Sample_*; do
-mkdir -p ./../04_orf_mapping/$f;
+mkdir -p ./../05_orf_mapping/$f;
 REF=$(readlink -f $f);
 echo $REF;
 BACK=$(pwd);
-cd ./../04_orf_mapping/$f;
+cd ./../05_orf_mapping/$f;
 ln -s $REF/*val* .;
 cd $BACK;
 done
@@ -41,8 +41,8 @@ Several mapping programs can be used, but for now we will use bowtie to map to t
 ### 2a Mapping to the genome with Bowtie2
 Mapping requires that the reference is indexed. i.e.
 ```
-ml
-bowtie2-build PkV-RF01_genebank.fasta PkV-RF01_genebank
+ml Bowtie2/2.4.4-GCC-10.3.0
+bowtie2-build PkV-RF01_final.fasta PkV-RF01_final_genome
 ```
 Set the reference in the bowtie.slurm script and run it for each sample with a for-loop
 
@@ -50,6 +50,6 @@ Set the reference in the bowtie.slurm script and run it for each sample with a f
 https://pachterlab.github.io/kallisto/manual
 ```
 ml kallisto/0.46.1-foss-2020a
-kallisto index PkV-RF01_genebank.fasta -i PkV-RF01_genebank
+kallisto index PkV-RF01_final.fnn -i PkV-RF01_final_cds
 ```
 Set the reference in the kallisto.slurm script and run it for each sample
