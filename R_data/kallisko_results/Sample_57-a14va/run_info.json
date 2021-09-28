@@ -1,0 +1,13 @@
+{
+	"n_targets": 1121,
+	"n_bootstraps": 0,
+	"n_processed": 32841198,
+	"n_pseudoaligned": 262838,
+	"n_unique": 262451,
+	"p_pseudoaligned": 0.8,
+	"p_unique": 0.8,
+	"kallisto_version": "0.46.1",
+	"index_version": 10,
+	"start_time": "Tue Sep 28 10:18:41 2021",
+	"call": "kallisto quant -i /cluster/work/users/anderkkr/57_Virvar/00_data/Genome_annotated/PkV-RF01_final_cds -t 16 -o kallisto_results 57-a14va_S176_L004_R1_001_val_1.fq.gz 57-a14va_S176_L004_R2_001_val_2.fq.gz"
+}

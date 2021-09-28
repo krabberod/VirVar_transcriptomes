@@ -25,11 +25,11 @@ rsync -avR 00_data/Sample_*/*val* trimmed
 This loop creates new directories and softlinks to the trimmed reads:
 ```
 for f in Sample_*; do
-mkdir -p ./../05_orf_mapping/$f;
+mkdir -p ./../06_genome_mapping/$f;
 REF=$(readlink -f $f);
 echo $REF;
 BACK=$(pwd);
-cd ./../05_orf_mapping/$f;
+cd ./../06_genome_mapping/$f;
 ln -s $REF/*val* .;
 cd $BACK;
 done
@@ -41,15 +41,25 @@ Several mapping programs can be used, but for now we will use bowtie to map to t
 ### 2a Mapping to the genome with Bowtie2
 Mapping requires that the reference is indexed. i.e.
 ```
+module purge
 ml Bowtie2/2.4.4-GCC-10.3.0
 bowtie2-build PkV-RF01_final.fasta PkV-RF01_final_genome
 ```
 Set the reference in the bowtie.slurm script and run it for each sample with a for-loop
 
 ### 2b Mapping to predicted genes with Kallisto
+Mapping the reads to the CDS using Kallisto.
+
 https://pachterlab.github.io/kallisto/manual
+https://pachterlab.github.io/kallisto/starting
 ```
+module purge
 ml kallisto/0.46.1-foss-2020a
 kallisto index PkV-RF01_final.fnn -i PkV-RF01_final_cds
 ```
 Set the reference in the kallisto.slurm script and run it for each sample
+
+
+### Step 3. Preparing data for R (DESeq)
+
+### Step 4. R analysis
