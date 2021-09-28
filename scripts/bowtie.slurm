@@ -18,7 +18,4 @@ bowtie2 -p 16 --no-unal -x $REF -1 *R1* -2 *R2* > mapped.sam
 
 samtools sort -@ 16 mapped.sam > sorted.bam
 samtools index sorted.bam
-samtools view -h sorted.bam | cut -f 3,3 | grep 'HG999' | sort | uniq -c > counts2.txt
-
-
-
+samtools view -h sorted.bam | cut -f 3,3 | grep 'PkV-RF01' | sort | uniq -c > counts2.txt
