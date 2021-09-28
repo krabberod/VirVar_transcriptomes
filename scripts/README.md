@@ -4,6 +4,14 @@ Contains scripts for transcriptome analysis:
   -
 - R scripts for analysis
 
+Download the reference genome with annotation from:
+```
+wget https://raw.githubusercontent.com/RomainBlancMathieu/PkV-RF01/master/PkV-RF01_final.gff
+wget https://raw.githubusercontent.com/RomainBlancMathieu/PkV-RF01/master/PkV-RF01_final.fnn
+wget https://raw.githubusercontent.com/RomainBlancMathieu/PkV-RF01/master/PkV-RF01_final.fasta
+wget https://raw.githubusercontent.com/RomainBlancMathieu/PkV-RF01/master/PkV-RF01_final.faa
+```
+
 ## STEP 1. Cleaning with trimgalore
 For-loop for starting the trim_galore script for all samples.
 ```
