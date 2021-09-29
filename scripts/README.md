@@ -47,18 +47,34 @@ bowtie2-build PkV-RF01_final.fasta PkV-RF01_final_genome
 ```
 Set the reference in the bowtie.slurm script and run it for each sample with a for-loop
 
+**Results are stored on saga**
+```
+/cluster/projects/nn9845k/UiB_Sandaa_VirVar_Marine_phytoplankton_NGS_2020/bowtie_results
+```
+For each sample the results include
+- _sorted.bam_: file with reads mapped/aligned to the reference genome
+- _counts.txt_: a simple summary of the number of reads mapping to the reference
+
 ### 2b Mapping to predicted genes with Kallisto
 Mapping the reads to the CDS using Kallisto.
 
-https://pachterlab.github.io/kallisto/manual
+https://pachterlab.github.io/kallisto/manual  
 https://pachterlab.github.io/kallisto/starting
+First make the database required for Kallisto to run:
 ```
 module purge
 ml kallisto/0.46.1-foss-2020a
 kallisto index PkV-RF01_final.fnn -i PkV-RF01_final_cds
 ```
 Set the reference in the kallisto.slurm script and run it for each sample
-
+**Results are stored on Saga**:
+```
+/cluster/projects/nn9845k/UiB_Sandaa_VirVar_Marine_phytoplankton_NGS_2020/kallisto_results
+```
+For each sample these outputfiles are provided:
+- _abundance.h5_: a binary file with abundance estimates (used in the R analysis)
+- _abundance.tsv_: a plaintext table of the abundance estimate for each gene
+- _run_info.json_: information about the run
 
 ### Step 4. R analysis
 See the script in the R_data folder. It's based on the DESeq2 package in R.
