@@ -38,8 +38,8 @@ done
 ## STEP 2. Mapping with bowtie2 or kallisto
 Several mapping programs can be used, but for now we will use bowtie to map to the genome and kallisto to map to the orf (or predicted genes). Kallisto allows quantification.
 
-### 2a Mapping to the genome with Bowtie2
-Mapping requires that the reference is indexed. i.e.
+### 2a Mapping reads to the genome with Bowtie2
+Mapping requires that the reference is indexed:
 ```
 module purge
 ml Bowtie2/2.4.4-GCC-10.3.0
@@ -55,7 +55,7 @@ For each sample the results include
 - _sorted.bam_: file with reads mapped/aligned to the reference genome
 - _counts.txt_: a simple summary of the number of reads mapping to the reference
 
-### 2b Mapping to predicted genes with Kallisto
+### 2b Mapping reads to predicted genes with Kallisto
 Mapping the reads to the CDS using Kallisto.
 
 https://pachterlab.github.io/kallisto/manual  
