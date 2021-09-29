@@ -16,17 +16,20 @@ library("gplots")
 library("vsn")
 library("IHW")
 library("readxl")
+library("rhdf5")
+library("apeglm")
 
-#dir <- system.file("extdata", package = "tximportData")
-#samples <- read.table(file.path(dir, "samples.txt"), header = TRUE)
-#files <- file.path(dir, "kallisto_boot", samples$run, "abundance.h5")
+# dir <- system.file("extdata", package = "tximportData")
+# samples <- read.table(file.path(dir, "samples.txt"), header = TRUE)
+# files <- file.path(dir, "kallisto_boot", samples$run, "abundance.h5")
 
 # Import Kallisto-results 
 files<-list.dirs("kallisko_results") %>% .[-1] %>% file.path(.,"abundance.h5")
 
 samples<-str_remove(files, "/abundance.h5") %>% str_remove("kallisko_results/")
 names(files)<-samples
-txi.kallisto <- tximport(files, type = "kallisto", txOut = TRUE, ignoreAfterBar = T)
+txi.kallisto <- tximport(files, type = "kallisto", 
+                         txOut = TRUE, ignoreAfterBar = T)
 metadata<-readxl::read_xlsx("Metadata.xlsx")
 
 # Quick heatmap to explore the data:

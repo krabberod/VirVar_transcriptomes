@@ -61,5 +61,11 @@ Set the reference in the kallisto.slurm script and run it for each sample
 
 
 ### Step 4. R analysis
-See the script in the R_data folder. It's based on the DESeq2 package in R. 
+See the script in the R_data folder. It's based on the DESeq2 package in R.
 http://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html
+
+
+# Starting an interactive job on Saga:
+```
+srun --account=nn9525k --mem-per-cpu=10G --time=10:00:00 --cpus-per-task=8 --pty bash -i
+```
