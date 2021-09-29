@@ -15,6 +15,7 @@ library("ggplot2")
 library("gplots")
 library("vsn")
 library("IHW")
+library("readxl")
 
 #dir <- system.file("extdata", package = "tximportData")
 #samples <- read.table(file.path(dir, "samples.txt"), header = TRUE)
@@ -30,12 +31,13 @@ metadata<-readxl::read_xlsx("Metadata.xlsx")
 
 # Quick heatmap to explore the data:
 # based on counts and , wihtout reordering the samples:
-heatmap(txi.kallisto$counts, Colv=NA)
-heatmap(txi.kallisto$abundance, Colv=NA)
+heatmap(txi.kallisto$counts, Colv=NA, Rowv = NA)
+heatmap(txi.kallisto$abundance, Colv=NA,  Rowv = NA)
 
 
 # Create the DESeq object: 
-dds<-DESeqDataSetFromTximport(txi.kallisto, colData = metadata, design=~Treatment+Replicates+Timepoints)
+dds<-DESeqDataSetFromTximport(txi.kallisto, colData = metadata, 
+                              design=~Treatment+Replicates+Timepoints)
 dds <- DESeq(dds)                                 
 
 # Examples from the tutorial
@@ -48,7 +50,7 @@ resLFC
 resOrdered <- res[order(res$pvalue),]
 
 # How many adjusted p-values were less than 0.01?
-sum(res$padj < 0.01, na.rm=TRUE)
+sum(res$padj < 0.05, na.rm=TRUE)
 
 # See what can be done with the results() function: 
 ?results
@@ -71,6 +73,8 @@ plotMA(resLFC, ylim=c(-2,2))
 
 # Plotting the gene with lowest p-value:  
 plotCounts(dds, gene=which.min(res$padj), intgroup="Timepoints")
+plotCounts(dds, 1100, intgroup="Timepoints")
+
 
 d <- plotCounts(dds, gene=which.min(res$padj), intgroup="Timepoints", 
                 returnData=TRUE)
