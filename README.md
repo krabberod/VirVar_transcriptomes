@@ -82,7 +82,7 @@ Pooling *all* reads might not be the best strategy. It will be very tough on res
       * *hard_filtered_transcripts.fasta*: sum = 59 Mbp, n = 71497, ave = 827.12, largest = 49414
       * **transdecoder** on *hard_filtered_transcripts*: 58444 aa
 
-## ggf to gtr
+- ggf to gtr
 
 
 # Further things to explore:
