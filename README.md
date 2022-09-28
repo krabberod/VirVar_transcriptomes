@@ -1,5 +1,5 @@
 # VirVar transcriptomes
-Resources for VirVar. Workshop 27-29 Sept 2021
+Resources for Virar. Workshop 27-29 Sept 2021
 
 
 From Jan:
@@ -42,7 +42,7 @@ To use the genome for the transcriptome data, it is necessary to do some annotat
    * The common tool to use is repeatmodeller. It takes time to run (~48 hours?), and it might not be finished before the workshop starts... 
    * Most recent version on Saga: RepeatModeler/2.0.2a-foss-2020b
    * See script in *scripts/2022* folder
-2) Prepare rna-seq for geneprediction
+2) Prepare rna-seq for gene-prediction
    * Align one or more of the samples to the genome with STAR (more is probably better).
      * Current version of STAR on Saga is v2.10.4, I've asked for an update to newest.
 
@@ -62,10 +62,10 @@ To use the genome for the transcriptome data, it is necessary to do some annotat
    * MEME (protein input: motif-scanning only)
    * Diamond (super-fast blast-like algorithm)
    * Kraken2 can be used to identify reads. 
-# Mapping RNA-seq to genome: 
+# Mapping RNA-seq to a genome: 
 1) STAR is a  splice-aware mapper. Suitable for mapping of eukaryotic reads that might contain splice variants. 
    * Can take gtf-files (i.e. annotations of genes) while mapping. Or features in gtf-files can be used post-maping to extract regions of interest
-  -   First build a database of the genome
+  -   First, build a database of the genome
   -   Map the reads. 
 
 1b) Kallisto (which we used last time), is a k-mer based pseudo-aligner. Needs a transcriptome/CDS or transcripts as reference. Kan be used against the predicted transcripts produced with braker2. 
