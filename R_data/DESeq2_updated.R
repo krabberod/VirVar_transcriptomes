@@ -79,7 +79,9 @@ plotMA(resLFC, ylim=c(-2,2))
 plotCounts(dds, gene=which.min(res$padj), 
            intgroup="Timepoints")
 
-p1 <- plotCounts(dds, 522, intgroup=c("Timepoints","Treatment","Replicates"),
+p1 <- plotCounts(dds, gene=which.min(res$padj), intgroup=c("Timepoints",
+                                      "Treatment",
+                                      "Replicates"),
                  returnData=TRUE)
 
 
@@ -92,11 +94,12 @@ d <- plotCounts(dds, gene=which.min(res$padj),
 library("ggplot2")
 library("ggeasy")
 library("ggpubr")
-ggplot(p1 , aes(x=Timepoints, y=count, color = factor(Treatment))) + 
+ggplot(p1 , aes(x=Timepoints, y=count, 
+                color = factor(Treatment))) + 
   geom_point(position=position_jitter(w=0.1,h=0.0)) +
   easy_add_legend_title("Treatment") +
   ggtitle(paste("Gene"))
-  # + 
+  #+ 
   #scale_y_log10(breaks=c(25,100,400))
 
 
@@ -104,6 +107,7 @@ ordered_genes <- rownames(resOrdered) %>%
   str_split_fixed("_",2) %>% .[,2] %>%  as.numeric()
 genes_of_interest <- ordered_genes[1:9]
 
+# genes_of_interest <- c(324,982,1102,5,6)
 list_of_plots <-list()
 
 for(i in 1:length(genes_of_interest))
@@ -118,6 +122,24 @@ for(i in 1:length(genes_of_interest))
   }
 
 ggarrange(plotlist=list_of_plots, ncol = 3, nrow = 3)
+ggsave("top9genes.pdf", width = 15, height = 15 )
+
+df <- resOrdered %>% as.data.frame()
+  
+ggplot(df, (aes(x = log2FoldChange, y = -log10(padj)))) +
+  geom_point(alpha=0.4, size=0.5) +
+  geom_vline(xintercept=c(-1,1),lty=4,col="black",lwd=0.2) +
+  geom_hline(yintercept = 1.301,lty=4,col="black",lwd=0.2) +
+  labs(x="log2(fold change)",
+       y="-log10 (adj.p-value)",
+       title="Volcanoplot")  +
+  theme_bw()+
+  theme(plot.title = element_text(hjust = 0.5), 
+        legend.position="right", 
+        legend.title = element_blank())
+
+
+
 
 colData(dds)
 resMFType <- results(dds, contrast=c("Timepoints","02","ar"))
@@ -153,7 +175,7 @@ plotPCA(ntd, intgroup="Timepoints",ntop = 500)
 
 ### Redo without the control. I.e. Subset to only virus
 
-dds_vir <- dds[, dds$Treatment %in% "va"]
+dds_vir <- dds[, dds$Treatment %in% "v"]
 # If you want to remove the re-infected
 `%notin%` <- Negate(`%in%`)
 dds_vir<-dds_vir[, dds_vir$Timepoints %notin% "ar"]
