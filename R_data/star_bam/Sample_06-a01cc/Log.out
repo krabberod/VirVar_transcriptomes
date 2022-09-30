@@ -1,0 +1,173 @@
+STAR version=2.7.10a_alpha_220818
+STAR compilation time,server,dir=2022-09-27T10:38:31+0200 login-1.saga.sigma2.no:/cluster/work/users/hrn/build/STAR/2.7.10a_alpha_220818/GCC-10.3.0/STAR-2.7.10a_alpha_220818/source
+STAR git: 
+##### Command Line:
+STAR --genomeDir /cluster/work/users/anderkkr/90_Virvar/03_meta_transcriptome/3_PkVRF01_Pk033/00_genome/PkV-RF01_stardb --readFilesIn 6-a01cc_S118_L002_R1_001_val_1.fq.gz 6-a01cc_S118_L002_R2_001_val_2.fq.gz --outSAMtype BAM Unsorted --runThreadN 16 --readFilesCommand zcat --outReadsUnmapped Fastx
+##### Initial USER parameters from Command Line:
+###### All USER parameters from Command Line:
+genomeDir                     /cluster/work/users/anderkkr/90_Virvar/03_meta_transcriptome/3_PkVRF01_Pk033/00_genome/PkV-RF01_stardb     ~RE-DEFINED
+readFilesIn                   6-a01cc_S118_L002_R1_001_val_1.fq.gz   6-a01cc_S118_L002_R2_001_val_2.fq.gz        ~RE-DEFINED
+outSAMtype                    BAM   Unsorted        ~RE-DEFINED
+runThreadN                    16     ~RE-DEFINED
+readFilesCommand              zcat        ~RE-DEFINED
+outReadsUnmapped              Fastx     ~RE-DEFINED
+##### Finished reading parameters from all sources
+
+##### Final user re-defined parameters-----------------:
+runThreadN                        16
+genomeDir                         /cluster/work/users/anderkkr/90_Virvar/03_meta_transcriptome/3_PkVRF01_Pk033/00_genome/PkV-RF01_stardb
+readFilesIn                       6-a01cc_S118_L002_R1_001_val_1.fq.gz   6-a01cc_S118_L002_R2_001_val_2.fq.gz   
+readFilesCommand                  zcat   
+outReadsUnmapped                  Fastx
+outSAMtype                        BAM   Unsorted   
+
+-------------------------------
+##### Final effective command line:
+STAR   --runThreadN 16   --genomeDir /cluster/work/users/anderkkr/90_Virvar/03_meta_transcriptome/3_PkVRF01_Pk033/00_genome/PkV-RF01_stardb   --readFilesIn 6-a01cc_S118_L002_R1_001_val_1.fq.gz   6-a01cc_S118_L002_R2_001_val_2.fq.gz      --readFilesCommand zcat      --outReadsUnmapped Fastx   --outSAMtype BAM   Unsorted   
+----------------------------------------
+
+Number of fastq files for each mate = 1
+
+   Input read files for mate 1 :
+-rw-rw-r-- 1 nis005 nn9845k 1339955278 Oct  5  2021 6-a01cc_S118_L002_R1_001_val_1.fq.gz
+
+   readsCommandsFile:
+exec > "./_STARtmp/tmp.fifo.read1"
+echo FILE 0
+zcat      "6-a01cc_S118_L002_R1_001_val_1.fq.gz"
+
+
+   Input read files for mate 2 :
+-rw-rw-r-- 1 nis005 nn9845k 1458153601 Oct  5  2021 6-a01cc_S118_L002_R2_001_val_2.fq.gz
+
+   readsCommandsFile:
+exec > "./_STARtmp/tmp.fifo.read2"
+echo FILE 0
+zcat      "6-a01cc_S118_L002_R2_001_val_2.fq.gz"
+
+ParametersSolo: --soloCellFilterType CellRanger2.2 filtering parameters:  3000 0.99 10
+Finished loading and checking parameters
+Reading genome generation parameters:
+### STAR   --runMode genomeGenerate      --runThreadN 8   --genomeDir PkV-RF01_stardb   --genomeFastaFiles PkV-RF01_final.fasta      --genomeSAindexNbases 9   --sjdbGTFfile PkV-RF01_final.gtf
+### GstrandBit=32
+versionGenome                 2.7.4a     ~RE-DEFINED
+genomeType                    Full     ~RE-DEFINED
+genomeFastaFiles              PkV-RF01_final.fasta        ~RE-DEFINED
+genomeSAindexNbases           9     ~RE-DEFINED
+genomeChrBinNbits             18     ~RE-DEFINED
+genomeSAsparseD               1     ~RE-DEFINED
+genomeTransformType           None     ~RE-DEFINED
+genomeTransformVCF            -     ~RE-DEFINED
+sjdbOverhang                  100     ~RE-DEFINED
+sjdbFileChrStartEnd           -        ~RE-DEFINED
+sjdbGTFfile                   PkV-RF01_final.gtf     ~RE-DEFINED
+sjdbGTFchrPrefix              -     ~RE-DEFINED
+sjdbGTFfeatureExon            exon     ~RE-DEFINED
+sjdbGTFtagExonParentTranscripttranscript_id     ~RE-DEFINED
+sjdbGTFtagExonParentGene      gene_id     ~RE-DEFINED
+sjdbInsertSave                Basic     ~RE-DEFINED
+genomeFileSizes               1572864   11724755        ~RE-DEFINED
+Genome version is compatible with current STAR
+Number of real (reference) chromosomes= 1
+1	PkV-RF01	1421182	0
+--sjdbOverhang = 100 taken from the generated genome
+Started loading the genome: Thu Sep 29 15:37:45 2022
+
+Genome: size given as a parameter = 1572864
+SA: size given as a parameter = 11724755
+SAindex: size given as a parameter = 1
+Read from SAindex: pGe.gSAindexNbases=9  nSAi=349524
+nGenome=1572864;  nSAbyte=11724755
+GstrandBit=32   SA number of indices=2842364
+Shared memory is not used for genomes. Allocated a private copy of the genome.
+Genome file size: 1572864 bytes; state: good=1 eof=0 fail=0 bad=0
+Loading Genome ... done! state: good=1 eof=0 fail=0 bad=0; loaded 1572864 bytes
+SA file size: 11724755 bytes; state: good=1 eof=0 fail=0 bad=0
+Loading SA ... done! state: good=1 eof=0 fail=0 bad=0; loaded 11724755 bytes
+Loading SAindex ... done: 1529259 bytes
+Finished loading the genome: Thu Sep 29 15:37:45 2022
+
+alignIntronMax=alignMatesGapMax=0, the max intron size will be approximately determined by (2^winBinNbits)*winAnchorDistNbins=589824
+Opening the file: ./_STARtmp//Unmapped.out.mate0.thread0 ... ok
+Opening the file: ./_STARtmp//Unmapped.out.mate1.thread0 ... ok
+Opening the file: ./_STARtmp//Unmapped.out.mate0.thread1 ... ok
+Opening the file: ./_STARtmp//Unmapped.out.mate1.thread1 ... ok
+Opening the file: ./_STARtmp//Unmapped.out.mate0.thread2 ... ok
+Opening the file: ./_STARtmp//Unmapped.out.mate1.thread2 ... ok
+Opening the file: ./_STARtmp//Unmapped.out.mate0.thread3 ... ok
+Opening the file: ./_STARtmp//Unmapped.out.mate1.thread3 ... ok
+Opening the file: ./_STARtmp//Unmapped.out.mate0.thread4 ... ok
+Opening the file: ./_STARtmp//Unmapped.out.mate1.thread4 ... ok
+Opening the file: ./_STARtmp//Unmapped.out.mate0.thread5 ... ok
+Opening the file: ./_STARtmp//Unmapped.out.mate1.thread5 ... ok
+Opening the file: ./_STARtmp//Unmapped.out.mate0.thread6 ... ok
+Opening the file: ./_STARtmp//Unmapped.out.mate1.thread6 ... ok
+Opening the file: ./_STARtmp//Unmapped.out.mate0.thread7 ... ok
+Opening the file: ./_STARtmp//Unmapped.out.mate1.thread7 ... ok
+Opening the file: ./_STARtmp//Unmapped.out.mate0.thread8 ... ok
+Opening the file: ./_STARtmp//Unmapped.out.mate1.thread8 ... ok
+Opening the file: ./_STARtmp//Unmapped.out.mate0.thread9 ... ok
+Opening the file: ./_STARtmp//Unmapped.out.mate1.thread9 ... ok
+Opening the file: ./_STARtmp//Unmapped.out.mate0.thread10 ... ok
+Opening the file: ./_STARtmp//Unmapped.out.mate1.thread10 ... ok
+Opening the file: ./_STARtmp//Unmapped.out.mate0.thread11 ... ok
+Opening the file: ./_STARtmp//Unmapped.out.mate1.thread11 ... ok
+Opening the file: ./_STARtmp//Unmapped.out.mate0.thread12 ... ok
+Opening the file: ./_STARtmp//Unmapped.out.mate1.thread12 ... ok
+Opening the file: ./_STARtmp//Unmapped.out.mate0.thread13 ... ok
+Opening the file: ./_STARtmp//Unmapped.out.mate1.thread13 ... ok
+Opening the file: ./_STARtmp//Unmapped.out.mate0.thread14 ... ok
+Opening the file: ./_STARtmp//Unmapped.out.mate1.thread14 ... ok
+Opening the file: ./_STARtmp//Unmapped.out.mate0.thread15 ... ok
+Opening the file: ./_STARtmp//Unmapped.out.mate1.thread15 ... ok
+Created thread # 1
+Created thread # 2
+Created thread # 3
+Starting to map file # 0
+mate 1:   6-a01cc_S118_L002_R1_001_val_1.fq.gz
+mate 2:   6-a01cc_S118_L002_R2_001_val_2.fq.gz
+Created thread # 4
+Created thread # 5
+Created thread # 6
+Created thread # 7
+Created thread # 8
+Created thread # 9
+Created thread # 10
+Created thread # 11
+Created thread # 12
+Created thread # 13
+Created thread # 14
+Created thread # 15
+Thread #9 end of input stream, nextChar=-1
+Completed: thread #14
+Completed: thread #0
+Completed: thread #8
+Completed: thread #5
+Completed: thread #12
+Completed: thread #3
+Completed: thread #7
+Completed: thread #9
+Completed: thread #10
+Completed: thread #1
+Joined thread # 1
+Completed: thread #15
+Completed: thread #2
+Joined thread # 2
+Joined thread # 3
+Completed: thread #4
+Joined thread # 4
+Joined thread # 5
+Completed: thread #6
+Joined thread # 6
+Joined thread # 7
+Joined thread # 8
+Joined thread # 9
+Joined thread # 10
+Completed: thread #13
+Completed: thread #11
+Joined thread # 11
+Joined thread # 12
+Joined thread # 13
+Joined thread # 14
+Joined thread # 15
+ALL DONE!

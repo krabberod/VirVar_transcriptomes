@@ -138,16 +138,13 @@ ggplot(df, (aes(x = log2FoldChange, y = -log10(padj)))) +
         legend.position="right", 
         legend.title = element_blank())
 
-
-
-
 colData(dds)
 resMFType <- results(dds, contrast=c("Timepoints","02","ar"))
 
 
 # Transformation: 
 ntd <- normTransform(dds)
-meanSdPlot(assay(ntd))
+# meanSdPlot(assay(ntd))
 
 # Heatmap with clustering and aggregation of rows: 
 # The function also allows to aggregate the rows using kmeans clustering. 
@@ -157,12 +154,12 @@ meanSdPlot(assay(ntd))
 library("pheatmap")
 select <- order(rowMeans(counts(dds,normalized=TRUE)),
                 decreasing=TRUE)[1:20]
-
+genes_of_interest
 df <- as.data.frame(colData(dds)[,c("Replicates","Timepoints")])
 
-pheatmap(assay(ntd)[select,], 
+pheatmap(assay(ntd)[genes_of_interest,], 
          cluster_rows=FALSE, 
-         show_rownames=FALSE,
+         show_rownames= TRUE,
          cluster_cols=FALSE, annotation_col=df)
 
 
@@ -170,12 +167,10 @@ plotPCA(ntd, intgroup="Timepoints",ntop = 500)
 
 
 
-
-
-
 ### Redo without the control. I.e. Subset to only virus
 
 dds_vir <- dds[, dds$Treatment %in% "v"]
+# dds_01_and_14 <- dds[, dds$Timepoints %in% c("01","14")] # For selection of specifi timepoints
 # If you want to remove the re-infected
 `%notin%` <- Negate(`%in%`)
 dds_vir<-dds_vir[, dds_vir$Timepoints %notin% "ar"]
@@ -190,16 +185,20 @@ d <- plotCounts(dds_vir, gene=which.min(res_vir$padj), intgroup="Timepoints",
                 returnData=TRUE)
 
 ggplot(d, aes(x=Timepoints, y=count)) + 
-  geom_point(position=position_jitter(w=0.1,h=0.0)) + 
-  scale_y_log10(breaks=c(25,100,400))
+  geom_point(position=position_jitter(w=0.1,h=0.0)) #+ 
+  #scale_y_log10(breaks=c(25,100,400))
 
 
 ntd_vir <- normTransform(dds_vir)
 meanSdPlot(assay(ntd_vir))
-pheatmap(assay(ntd_vir)[select,], cluster_rows=FALSE, show_rownames=TRUE,
-         cluster_cols=FALSE, annotation_col=df)
+pheatmap(assay(ntd_vir)[select,], 
+         cluster_rows = TRUE, 
+         show_rownames = TRUE,
+         cluster_cols = TRUE, 
+         annotation_col = df)
 
-plotPCA(ntd_vir, intgroup="Timepoints",ntop = 500)
-
+plotPCA(ntd_vir, intgroup="Timepoints",
+        ntop = 1100)
+?hclust
 
 #etc. etc 

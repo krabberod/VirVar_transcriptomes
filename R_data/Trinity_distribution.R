@@ -21,8 +21,8 @@ rnaspades_hard_v %>%
 
 rnaspades_hard_v %>% 
   ggplot(aes(length)) + 
-  geom_histogram() + 
-  facet_wrap(. ~ Sample, ncol=5)
+  geom_histogram() #+ 
+  #facet_wrap(. ~ Sample, ncol=5)
 
 unique(rnaspades_hard_v$Sample)
 

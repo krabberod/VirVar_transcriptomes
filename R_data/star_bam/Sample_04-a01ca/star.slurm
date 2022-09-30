@@ -16,9 +16,20 @@ echo "#     $(date)"
 echo "###################################################"
 echo ""
 module purge
-module load STAR/2.7.10a_alpha_220818-GCC-10.3.0
+module load STAR/2.7.10a_alpha_220818-GCC-10.3.0 
 
-STAR --runMode genomeGenerate --sjdbGTFfile PkV-RF01_final.gtf --genomeDir PkV-RF01 --genomeFastaFiles PkV-RF01_final.fasta --genomeSAindexNbases 9 --runThreadN $SLURM_CPUS_PER_TASK
+GENOME=/cluster/work/users/anderkkr/90_Virvar/03_meta_transcriptome/3_PkVRF01_Pk033/00_genome/PkV-RF01_stardb
+# /cluster/work/users/anderkkr/90_Virvar/03_meta_transcriptome/1_PkVRF01_He028/04_map_to_genome_pr_sample/HeUIO028_genome_STAR_v2.10a
+echo "GENOME is $GENOME"
+
+R1=$1
+R2=$2
+echo "R1 and R2 are: " $R1 $R2
+
+
+STAR --genomeDir $GENOME --readFilesIn $R1 $R2 --outSAMtype BAM Unsorted --runThreadN $SLURM_CPUS_PER_TASK --readFilesCommand zcat --outReadsUnmapped Fastx
+
+
 
 # Computing runtime
 secs=$(($(date +%s)-$START))
