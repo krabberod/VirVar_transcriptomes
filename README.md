@@ -1,6 +1,6 @@
 # VirVar transcriptomes
 
-For the 2024 - May workshop go to the folder: [2024 - Workshop](2024%20-%20Workshop/README.md)
+For the 2024 - May workshop go to the folder: [2024 - Workshop](2024_Workshop/)
 
 Resources for Virar. Workshop 27-29 Sept 2021
 
