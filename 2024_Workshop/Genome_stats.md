@@ -1,3 +1,6 @@
+# STATISTICS OF THE GENOME ASSEMBLY
+### Haptolina_ericina_var_UIO028.mainGenome.fasta
+
 | Statistic    | Value       |
 | ------------ | ----------- |
 | total_length | 428,890,065 |
@@ -16,8 +19,6 @@
 
 ----
 ### Results from Repeatmodeler
-
-	
 **file name:** Haptolina_ericina_var_UIO028.mainGenome.fasta			
 **sequences**:	388		
 **total length:**  428,890,065 bp  (428890065 bp excl N/X-runs)			
@@ -58,10 +59,49 @@
 | Low complexity:                      | 20,573             | 2,075,393            | 0.48%                  |
 * most repeats fragmented by insertions or deletions			
   have been counted as one element			
-            
-            
-RepeatMasker version 4.1.2-p1 , rushjob mode			
-            
+RepeatMasker version 4.1.2-p1 , rushjob mode			         
 run with rmblastn version 2.11.0+			
-The query was compared to classified sequences in "HeUIO028_scaff3-families.fa"			
-	
+The query was compared to classified sequences in "HeUIO028_scaff3-families.fa"	
+
+### Results from BRAKER2
+Theses statisics are from the gtf file after running BRAKER2 on the genome.
+(including simple bash commnad to get the stats)
+
+The format of the gtf file is as follows:
+
+| Scaffold     | Source    | Feature     | Start   | End     | Score | Strand | Frame | Attributes                             |
+|--------------|-----------|-------------|---------|---------|-------|--------|-------|----------------------------------------|
+| scaffold_103 | AUGUSTUS  | start_codon | 598011  | 598013  | .     | +      | 0     | transcript_id "g105827.t1"; gene_id "g105827"; |
+| scaffold_103 | AUGUSTUS  | CDS         | 598011  | 598595  | 1     | +      | 0     | transcript_id "g105827.t1"; gene_id "g105827"; |
+| scaffold_103 | AUGUSTUS  | exon        | 598011  | 598595  | .     | +      | .     | transcript_id "g105827.t1"; gene_id "g105827"; |
+| scaffold_103 | AUGUSTUS  | gene        | 598011  | 598595  | 1     | +      | .     | g105827 |
+| scaffold_103 | AUGUSTUS  | transcript  | 598011  | 598595  | 1     | +      | .     | g105827.t1 |
+| scaffold_103 | AUGUSTUS  | stop_codon  | 598593  | 598595  | .     | +      | 0     | transcript_id "g105827.t1"; gene_id "g105827"; |
+| scaffold_1   | AUGUSTUS  | stop_codon  | 2460597 | 2460599 | .     | -      | 0     | transcript_id "g71632.t2"; gene_id "g71632"; |
+| scaffold_1   | AUGUSTUS  | CDS         | 2460597 | 2460879 | 0.72  | -      | 1     | transcript_id "g71632.t2"; gene_id "g71632"; |
+| scaffold_1   | AUGUSTUS  | exon        | 2460597 | 2460879 | .     | -      | .     | transcript_id "g71632.t2"; gene_id "g71632"; |
+| scaffold_1   | AUGUSTUS  | intron      | 2460880 | 2462310 | 0.49  | -      | .     | transcript_id "g71632.t2"; gene_id "g71632"; |
+| scaffold_1   | AUGUSTUS  | CDS         | 2462311 | 2462603 | 0.68  | -      | 0     | transcript_id "g71632.t2"; gene_id "g71632"; |
+| scaffold_1   | AUGUSTUS  | exon        | 2462311 | 2462603 | .     | -      | .     | transcript_id "g71632.t2"; gene_id "g71632"; |
+| scaffold_1   | AUGUSTUS  | intron      | 2462604 | 2462664 | 0.55  | -      | .     | transcript_id "g71632.t2"; gene_id "g71632"; |
+| scaffold_1   | AUGUSTUS  | CDS         | 2462665 | 2463132 | 0.55  | -      | 0     | transcript_id "g71632.t2"; gene_id "g71632"; |
+| scaffold_1   | AUGUSTUS  | exon        | 2462665 | 2463132 | .     | -      | .     | transcript_id "g71632.t2"; gene_id "g71632"; |
+| scaffold_1   | AUGUSTUS  | start_codon | 2463130 | 2463132 | .     | -      | 0     | transcript_id "g71632.t2"; gene_id "g71632"; |
+| scaffold_1   | AUGUSTUS  | gene        | 2460597 | 2463666 | 0.78  | -      | .     | g71632 |
+| scaffold_1   | AUGUSTUS  | transcript  | 2460597 | 2463666 | 0.37  | -      | .     | g71632.t1 |
+_etc._
+
+
+```bash
+# Count the number of unique genes
+awk '$3 == "gene"' your_output.gtf | cut -f9 | sort -u | wc -l
+110010
+ # Count the number of unique transcripts
+awk '$3 == "transcript"' your_output.gtf | cut -f9 | sort -u | wc -l
+113522
+```
+The average length is 1884.28 base pairs, and the length of the largest sequence is 157,716 base pairs(!?!).
+**NB. the longest gene seems too long? Have to check in the mapping, if this is reasonable or not**
+
+
+
