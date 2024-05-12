@@ -70,10 +70,9 @@ STAR --runThreadN $SLURM_CPUS_PER_TASK \
      --runMode genomeGenerate \
      --genomeDir PkVRF01-He028_star \
      --genomeFastaFiles PkVRF01-He028.fasta \
-     --sjdbGTFfile PkVRF01-He028.gtff \
-     --sjdbOverhang ReadLength-1
+     --sjdbGTFfile PkVRF01-He028.gtff
 ```
-**NB** Set the --sjdbOverhang parameter to 1 less than the read length you are using for the mapping IF the reads are shorter than 100. 
+**NB** Set the --sjdbOverhang parameter to 1 less than the read length you are using for the mapping IF the reads are shorter than 100. I tested with 100 bp and the average read length of 136bp. It didn't seem to make a difference.
 > The `--sjdbOverhang` is used only at the genome generation step, and tells STAR how many bases to concatenate from donor and acceptor sides of the junctions. If you have 100b reads, the ideal value of `--sjdbOverhang` is 99, which allows the 100bp read to map 99bp on one side, 1bp on the other side. One can think of `--sjdbOverhang` as the maximum possible overhang for your reads.
 
 ### 3. Map the Reads
@@ -99,16 +98,6 @@ STAR --genomeDir $GENOME_INDEX \
 ```
 ### 4. Analyze Differential Expression
 The resulting **ReadsPerGene.out.tab** will contain counts for both host and viral genes. This data can be loaded into R for differential expression analysis or other downstream analysis. 
-```R
-library(DESeq2)
-countData <- read.delim("/path/to/ReadsPerGene.out.tab", row.names=1)
-colData <- data.frame(condition=factor(c("control", "treatment")))
-dds <- DESeqDataSetFromMatrix(countData = countData,
-                              colData = colData,
-                              design= ~ condition)
-dds <- DESeq(dds)
-res <- results(dds)
-```
 
 
 ### Additional Considerations
