@@ -1,4 +1,4 @@
-To make the folders more conveinent to work with, I will rename the folders to the following format:
+To make the folders more convenient to work with, the folders will be renamed to the following format:
 
 Sample_1-a01va -> Sample_01-a01va
 Sample_2-a01vb -> Sample_02-a01vb

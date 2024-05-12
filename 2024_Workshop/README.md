@@ -81,10 +81,11 @@ Star requires the genome index to be in a directory with the name of the genome 
 Star also requires the reads to be unzipped in order to be read. 
 
 For quick unzipping of the reads, use the pigz module on SAGA:
-```
+```bash
 module load pigz/2.7-GCCcore-12.2.0
 pigz -d *fq.gz
 ```
+
 
 Map the reads to the combined reference genome with STAR:` 
 
@@ -96,6 +97,14 @@ STAR --genomeDir $GENOME_INDEX \
      --outSAMtype BAM SortedByCoordinate \
      --quantMode GeneCounts
 ```
+Some premlimary results: 
+- The % of reads mapping uniquely is a bit low: about 30%. 
+- The % of reads mapping to multiple locations is high, higher than "normal" (about 40%).
+- Need to check the mapping quality, or other reasons that could explain this.
+  - Genome duplication?
+  - Polyploidy?
+
+
 ### 4. Analyze Differential Expression
 The resulting **ReadsPerGene.out.tab** will contain counts for both host and viral genes. This data can be loaded into R for differential expression analysis or other downstream analysis. 
 
@@ -106,4 +115,5 @@ The resulting **ReadsPerGene.out.tab** will contain counts for both host and vir
 - Viral Integration? reads that span host-virus junctions? 
 - Chimeric Reads Identification: Look for chimeric reads that span both host and viral sequences. This can be indicative of viral integration into the host genome. Tools like STAR can identify chimeric reads during the alignment process.
 - Integration Sites Analysis: Potential tools: VirusSeq (https://pubmed.ncbi.nlm.nih.gov/23162058/), VirusFinder (https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0064465), or ViFi (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6283451/). These tools can detect viral integration by analyzing chimeric reads and discordant read pairs.
+- Host-Virus Interaction: Are there specific pathways or genes that are known to be involved in the host's response to viral infection? 
 - The number of genes predicted from the Haptolina ericina genome is quite high. 
