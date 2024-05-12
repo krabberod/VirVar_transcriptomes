@@ -1,17 +1,16 @@
 # VirVar transcriptomes
 
-For the 2024 - May workshop go to the folder: [2024 - Workshop](2024_Workshop/)
+**For the 2024 - May workshop** go to the folder: [2024 - Workshop](2024_Workshop/)
 
+### Previous sessions: 
 Resources for Virar. Workshop 27-29 Sept 2021
-
-
 From Jan:
 - FASTQC for visualizing read quality, adaptor presence etc.
 - Cutadapt for adapter trimming (you can also use Trimmomatic)
 - Trinity for reference transcriptome assembly (all treatments together if you lack a better reference like a genome)
 - Bowtie2 for mapping reads to my contig(s) of interest: I used this for a focused analysis of a small subset of molecules
 - RSEM (or salmon/kalisto) for quantifying the abundance of all transcripts in each treatment: I used the Trinity script to call the programs (each has to be installed individually).
-- something to visualize genes that is significantly differentially expressed in between treatments (R but not very knowledgeable of this).
+- something to visualize genes that are significantly differentially expressed in between treatments (R but not very knowledgeable of this).
 
 ## General Steps
 1) Clean raw data (Cutadapt, Trimmomatic, Trim_galore)
