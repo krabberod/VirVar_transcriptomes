@@ -16,3 +16,6 @@ jellyfish histo -o kmer_histogram.txt $GENOME.jf
 input.fasta is the input FASTA file. Replace this with the path to your actual input file.
 
 **The result is not conclusive, for a more reliable result the sequencing data is probably needed**
+
+
+![kmer_histogram](./kmer_histogram.png)
