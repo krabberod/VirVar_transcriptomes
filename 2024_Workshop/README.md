@@ -77,8 +77,7 @@ STAR --runThreadN $SLURM_CPUS_PER_TASK \
 
 ### 3. Map the Reads
 
-Star requires the genome index to be in a directory with the name of the genome index. 
-Star also requires the reads to be unzipped in order to be read. 
+Star requires the genome index to be in a directory with the name of the genome index.  
 
 For quick unzipping of the reads, use the pigz module on SAGA:
 ```bash
@@ -87,7 +86,8 @@ pigz -d *fq.gz
 ```
 
 
-Map the reads to the combined reference genome with STAR:` 
+Map the reads to the combined reference genome with STAR:
+(if reads are gzipped use **--readFilesCommand zcat**)
 
 ```bash
 STAR --genomeDir $GENOME_INDEX \
