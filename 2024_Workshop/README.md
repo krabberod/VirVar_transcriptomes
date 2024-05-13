@@ -104,6 +104,33 @@ Some premlimary results:
   - Genome duplication?
   - Polyploidy?
 
+**UPDATE 13 MAY**
+The number of reads mapping to multiple locations went down after removing rDNA from the RNA-reads as expected (reads mapped to multiple loci: 3.16%, of reads mapped to too many loci: 1.78%): The percentage of reads mapping uniquely went up a bit to 45.9%, but that is still a bit low. Next step is to adjust parameters that control the minimum number of matched bases to consider a read as mapped and the minimum fraction of the read length that needs to be aligned. I.e. the --outFilterMatchNmin and --outFilterScoreMinOverLread parameters.
+
+> The default behavior for STAR regarding reads that are too short to be mapped is determined by a couple of key parameters:
+> 
+> --outFilterMatchNmin: This parameter sets the minimum number of matched bases to consider a read as mapped. By default, STAR does not explicitly set this parameter, which means it is essentially governed by the overall alignment criteria set by other parameters.
+> 
+> --outFilterScoreMinOverLread: This parameter, along with --outFilterMatchNminOverLread, sets the minimum fraction of the read length that needs to be aligned. The default value for --outFilterScoreMinOverLread is 0.66 (or 66%).
+> 
+> --outFilterMatchNminOverLread: The default for this parameter is 0.66 (or 66%), meaning that at least 66% of the read length needs to match the reference for it to be considered mapped.
+> 
+> Given these defaults, reads that are shorter than two-thirds of their original length in terms of matched bases will be considered too short to map. This effectively means that if a read is trimmed or inherently short, it might fall below this threshold and be classified as "too short."
+
+Testing with a lower setting for --outFilterMatchNmin and --outFilterScoreMinOverLread. 
+
+```bash
+STAR --genomeDir $GENOME \
+     --readFilesIn $1 $2 \
+     --runThreadN $SLURM_CPUS_PER_TASK \
+     --outFileNamePrefix $STR.PkVRF01-He028 \
+     --outSAMtype BAM SortedByCoordinate \
+     --quantMode GeneCounts \
+     --outFilterMatchNminOverLread 0.3 \
+     --outFilterScoreMinOverLread 0.3
+```
+The percentage of reads mapping uniquely went up to 56.88% Which is better (but lowering the mach criteria might also increase the number of false positives).
+
 
 ### 4. Analyze Differential Expression
 The resulting **ReadsPerGene.out.tab** will contain counts for both host and viral genes. This data can be loaded into R for differential expression analysis or other downstream analysis. 
