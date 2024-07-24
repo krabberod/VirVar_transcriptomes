@@ -21,6 +21,7 @@ read_sample_file <- function(file) {
   sample_name <- str_extract(basename(file), "Sample_\\d{2}-[a-zA-Z0-9]+")
   # Read the file with appropriate column names
   df <- read_tsv(file, col_names = c("Gene", sample_name), col_types = cols(.default = "c"))
+  df[1:2]
   df[[sample_name]] <- as.numeric(df[[sample_name]])
   return(df)
 }
@@ -106,8 +107,6 @@ library("pheatmap")
 library("glmpca")
 library("apeglm")
 library("genefilter")
-
-
 
 # Read metadata file
 metadata <- read_excel("Metadata_He028_PkVRF01.xlsx") %>% as.data.frame()
